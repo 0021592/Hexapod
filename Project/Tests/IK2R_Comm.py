@@ -8,11 +8,12 @@ if __name__ == '__main__':
         y = float(input('Y:'))
         z = float(input('Z:'))
         angles = []
-        angles = RIK3(x, y, z) #RIK3 returneaza 3 valori - unghiurile
+        angles = IK.RIK3(x, y, z) #RIK3 returneaza 3 valori - unghiurile
         if (angles[0] == -1): #nu exista unghi
             pass
-        #am impresia ca q2 e flipped...
-        print(angles[0], ' ', angles[1], ' ', angles[2], '\n') #imi da output intre pi si -pi 
+        angles = IK.transform3(angles)
+        for i in range(0, 3):
+            serial.write(angles[i].encode('utf-8'))
 
     
 

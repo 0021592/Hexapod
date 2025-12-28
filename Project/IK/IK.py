@@ -13,9 +13,15 @@ from math import cos
 L1 = 98.875
 L2 = 136.875
 #constante
+def transform3(q):
+    for i in range(0, 3):
+        q[i] = q[i] / (pi/2)
+    return q
 
-def RIK3(x, y, z): #y este height, x este forward, z este left
-    q3 = atan(z/y)
+def RIK3(x, y, z): #x este forward, y este height, z este left
+    q3 = atan(z/x) #asta este tangenta
+    if (z < 0):
+        q3 = -q3
     #x-ul nu este chiar x, ci mai degraba:
     x = sqrt(x**2 + z**2)
     xd = sqrt(x**2 + y**2) #modulul vectorului
@@ -34,8 +40,12 @@ def RIK3(x, y, z): #y este height, x este forward, z este left
     q2 = -acos(c2)
     q1 = theta - atan(L2 * sin(q2) /( L1 + L2*cos(q2)))
     if (q1 > 0):
+        q2 = q2 + (pi/2)
+        #if ()
         return ([q1, q2, q3])
     q2 = acos(c2)
     q1 = theta - atan(L2 * sin(q2)/(L1 + L2*cos(q2)))
+    if (q2 < 0)
+    #daca TOATE imi returneaza in -pi si pi, atunci stiu unghiurile
     return ([q1, q2, q3])
 
