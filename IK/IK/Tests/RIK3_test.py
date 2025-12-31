@@ -1,4 +1,4 @@
-from IK import RIK3
+from ONCS.IK.IK.IK import RIK3
 
 while(True): #in mm
     x = float(input('X:'))
